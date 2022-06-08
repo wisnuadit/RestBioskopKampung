@@ -12,10 +12,11 @@ public class StudioHeaderDTO {
     private final String studioId;
     private final String studioNumber;
     private final String description;
+    private final boolean isEnabled;
 
     public static StudioHeaderDTO set(Studio studio){
         return new StudioHeaderDTO(studio.getStudioId().toString(), studio.getStudioNumber().toString(),
-                studio.getDescription());
+                studio.getDescription(), studio.isEnabled());
     }
 
     public static List<StudioHeaderDTO> toList(List<Studio> studios){

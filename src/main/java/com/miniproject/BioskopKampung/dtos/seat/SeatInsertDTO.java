@@ -8,6 +8,6 @@ import java.util.List;
 public class SeatInsertDTO {
 
     private final Integer studioId;
-    private final List<Integer> seatNumber;
+    private final List<Integer> seatNumbers;
     private final String row;
 }

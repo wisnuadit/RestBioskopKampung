@@ -26,6 +26,9 @@ public class Studio {
     @Column(name = "[Description]")
     private String description;
 
+    @Column(name = "IsEnabled")
+    private boolean isEnabled;
+
     @JsonIgnore
     @OneToMany(mappedBy = "studio")
     private List<Seat> seats;

@@ -30,6 +30,12 @@ public class Seat {
     @Column(name = "Row")
     private String row;
 
+    @Column(name = "IsBooked")
+    private boolean isBooked;
+
+    @Column(name = "IsEnabled")
+    private boolean isEnabled;
+
     public Seat(Studio studio, Integer seatNumber, String row) {
         this.studio = studio;
         this.seatNumber = seatNumber;
