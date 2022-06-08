@@ -4,6 +4,8 @@ import com.miniproject.BioskopKampung.models.Customer;
 import lombok.Data;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 @Data
@@ -25,5 +27,13 @@ public class CustomerHeaderDTO {
         return new CustomerHeaderDTO(customer.getCustomerId(), customer.fetchFullname(),
                 customer.getGender(), birthDate, customer.getAddress(), customer.getPhoneNumber(),
                 customer.getEmail());
+    }
+
+    public static List<CustomerHeaderDTO> toList(List<Customer> customers){
+        List<CustomerHeaderDTO> result = new ArrayList<>();
+        for (Customer customer : customers){
+            result.add(set(customer));
+        }
+        return result;
     }
 }

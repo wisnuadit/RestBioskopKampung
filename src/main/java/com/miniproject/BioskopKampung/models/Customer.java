@@ -17,7 +17,7 @@ public class Customer {
     @Id
     @OneToOne
     @JoinColumn(name = "CustomerID")
-    private String customerId;
+    private User user;
 
     @Column(name = "FirstName")
     private String firstName;
