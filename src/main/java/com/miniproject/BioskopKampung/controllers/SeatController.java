@@ -4,6 +4,7 @@ import com.miniproject.BioskopKampung.RestResponse;
 import com.miniproject.BioskopKampung.dtos.seat.SeatHeaderDTO;
 import com.miniproject.BioskopKampung.dtos.seat.SeatInsertDTO;
 import com.miniproject.BioskopKampung.dtos.seat.SeatInsertResponseDTO;
+import com.miniproject.BioskopKampung.services.SeatService;
 import com.miniproject.BioskopKampung.services.SeatServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +17,10 @@ import java.util.List;
 @RequestMapping("seats")
 public class SeatController {
 
-    private SeatServiceImplementation service;
+    private SeatService service;
 
     @Autowired
-    public SeatController(SeatServiceImplementation service) {
+    public SeatController(SeatService service) {
         this.service = service;
     }
 

@@ -33,6 +33,10 @@ public class Studio {
     @OneToMany(mappedBy = "studio")
     private List<Seat> seats;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "studio")
+    private List<Schedule> schedules;
+
     public Studio(Integer studioNumber, String description) {
         this.studioNumber = studioNumber;
         this.description = description;

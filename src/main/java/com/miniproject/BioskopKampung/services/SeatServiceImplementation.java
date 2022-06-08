@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SeatServiceImplementation {
+public class SeatServiceImplementation implements SeatService{
 
     private SeatRepository seatRepository;
     private StudioRepository studioRepository;

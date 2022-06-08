@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -33,6 +34,10 @@ public class Film {
 
     @Column(name = "EndDate")
     private LocalDate endDate;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "film")
+    private List<Schedule> schedules;
 
     public Film(Category category, String filmName, LocalDate releaseDate, LocalDate endDate) {
         this.category = category;
