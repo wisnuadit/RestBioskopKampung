@@ -34,7 +34,7 @@ public class CategoryController {
         );
     }
 
-    @PostMapping
+    @PostMapping("insert-new-category")
     public ResponseEntity<RestResponse<CategoryInsertResponseDTO>> insertNewCategory(
             @RequestBody CategoryInsertDTO categoryDTO
             ){
