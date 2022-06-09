@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,7 +38,7 @@ public class ScheduleServiceImplementation implements ScheduleService {
         return ScheduleHeaderDTO.toList(scheduleRepository.findAll());
     }
 
-    public List<ScheduleInsertResponseDTO> insertNewSchedules(ScheduleInsertDTO scheduleDTO){
+    public ScheduleInsertResponseDTO insertNewSchedules(ScheduleInsertDTO scheduleDTO){
         Studio studio = studioRepository.findById(scheduleDTO.getStudioId())
                 .orElseThrow(() -> new IllegalArgumentException("Studio tidak ditemukan"));
 
@@ -51,22 +50,12 @@ public class ScheduleServiceImplementation implements ScheduleService {
         LocalTime time = LocalTime.parse(scheduleDTO.getTime());
         LocalDate date = LocalDate.parse(scheduleDTO.getDate(), formatterDate);
 
-        List<Schedule> newSchedules = new ArrayList<>();
-        for (int i = 1; i <= 7; i++){
-            newSchedules.add(new Schedule(studio, film, time, date.plusDays(i - 1),
-                    scheduleDTO.getDescription()));
-        }
+        Schedule schedule = new Schedule(studio, film, time, date,
+                    scheduleDTO.getDescription());
 
-        List<Schedule> schedules = scheduleRepository.findAll();
-        for (Schedule schedule : schedules){
-            if (schedule.getScheduleId() == scheduleDTO.getStudioId() && schedule.getTime() == time){
-                throw new IllegalArgumentException("Untuk Studio tersebut tidak boleh memiliki jam yang sama");
-            }
-        }
+        scheduleRepository.save(schedule);
 
-        scheduleRepository.saveAll(newSchedules);
-
-        return ScheduleInsertResponseDTO.toList(newSchedules);
+        return ScheduleInsertResponseDTO.set(schedule);
     }
 
     public ScheduleDeleteResponseDTO deleteSchedule(Integer id){

@@ -10,6 +10,6 @@ import java.util.List;
 public interface ScheduleService {
 
     public List<ScheduleHeaderDTO> findAllSchedules();
-    public List<ScheduleInsertResponseDTO> insertNewSchedules(ScheduleInsertDTO scheduleDTO);
+    public ScheduleInsertResponseDTO insertNewSchedules(ScheduleInsertDTO scheduleDTO);
     public ScheduleDeleteResponseDTO deleteSchedule(Integer id);
 }

@@ -34,7 +34,7 @@ public class StudioController {
         );
     }
 
-    @PostMapping
+    @PostMapping("insert-new-studio")
     public ResponseEntity<RestResponse<StudioInsertResponseDTO>> insertNewStudio(
             @RequestBody StudioInsertDTO studioDTO
             ){

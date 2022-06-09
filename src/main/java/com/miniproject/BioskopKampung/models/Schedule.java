@@ -1,5 +1,6 @@
 package com.miniproject.BioskopKampung.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -40,11 +42,16 @@ public class Schedule {
     @Column(name = "IsScheduled")
     private boolean isScheduled;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "schedule")
+    private List<BookingTicket> bookingTickets;
+
     public Schedule(Studio studio, Film film, LocalTime time, LocalDate date, String description) {
         this.studio = studio;
         this.film = film;
         this.time = time;
         this.date = date;
         this.description = description;
+        this.isScheduled = true;
     }
 }

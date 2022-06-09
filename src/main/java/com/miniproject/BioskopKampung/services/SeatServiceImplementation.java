@@ -34,12 +34,20 @@ public class SeatServiceImplementation implements SeatService{
                 .orElseThrow(() -> new IllegalArgumentException("Studio tidak ditemukan"));
 
         Seat seat = new Seat();
-        List<Seat> seats = new ArrayList<>();
+        List<Seat> oldSeats = seatRepository.findAll();
 
+        List<Seat> seats = new ArrayList<>();
         List<Integer> seatNumbers = seatDTO.getSeatNumbers();
         for (Integer seatNumber : seatNumbers){
             seat = new Seat(studio, seatNumber, seatDTO.getRow());
             seats.add(seat);
+
+            for (Seat oldSeat : oldSeats){
+                if (seatNumber == oldSeat.getSeatId() && seat.getRow().equals(oldSeat.getRow())){
+                    throw new IllegalArgumentException(String.format("Seat %s%d sudah ada",
+                            seat.getRow(), seat.getSeatId()));
+                }
+            }
         }
 
         seatRepository.saveAll(seats);

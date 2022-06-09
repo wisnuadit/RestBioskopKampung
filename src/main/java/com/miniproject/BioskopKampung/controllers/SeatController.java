@@ -5,7 +5,6 @@ import com.miniproject.BioskopKampung.dtos.seat.SeatHeaderDTO;
 import com.miniproject.BioskopKampung.dtos.seat.SeatInsertDTO;
 import com.miniproject.BioskopKampung.dtos.seat.SeatInsertResponseDTO;
 import com.miniproject.BioskopKampung.services.SeatService;
-import com.miniproject.BioskopKampung.services.SeatServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +34,7 @@ public class SeatController {
         );
     }
 
-    @PostMapping
+    @PostMapping("insert-new-seats")
     public ResponseEntity<RestResponse<SeatInsertResponseDTO>> insertNewSeats(
             @RequestBody SeatInsertDTO seatDTO
             ){

@@ -30,10 +30,21 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/sign-user").permitAll()
-                .antMatchers("/user").authenticated()
-                .antMatchers("/category", "/film", "/schedule",
-                        "/seats", "/studio").hasRole("User")
+                .antMatchers("/user/**").permitAll()
+                .antMatchers("/booking-ticket").hasRole("Admin")
+                .antMatchers("/category/insert-new-category").hasRole("Admin")
+                .antMatchers("/customer").hasRole("Admin")
+                .antMatchers("/film/insert-new-film").hasRole("Admin")
+                .antMatchers("/schedule/insert-new-schedule").hasRole("Admin")
+                .antMatchers("/seats/insert-new-seats").hasRole("Admin")
+                .antMatchers("/studio", "/studio/insert-new-studio").hasRole("Admin")
+                // ================================================================================
+                .antMatchers("/booking-ticket/booking").hasRole("User")
+                .antMatchers("/category").hasRole("User")
+                .antMatchers("/customer/insert-new-customer").hasRole("User")
+                .antMatchers("/film").hasRole("User")
+                .antMatchers("/schedule").hasRole("User")
+                .antMatchers("/seats").hasRole("User")
                 .and().httpBasic()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }

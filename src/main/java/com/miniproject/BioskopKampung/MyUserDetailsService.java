@@ -1,4 +1,4 @@
-package com.miniproject.BioskopKampung.services;
+package com.miniproject.BioskopKampung;
 
 import com.miniproject.BioskopKampung.MyUserDetails;
 import com.miniproject.BioskopKampung.models.User;

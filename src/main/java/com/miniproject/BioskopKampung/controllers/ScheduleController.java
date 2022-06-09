@@ -35,14 +35,13 @@ public class ScheduleController {
         );
     }
 
-    @PostMapping
-    public ResponseEntity<RestResponse<List<ScheduleInsertResponseDTO>>> insertNewSchedules(
+    @PostMapping("insert-new-schedule")
+    public ResponseEntity<RestResponse<ScheduleInsertResponseDTO>> insertNewSchedules(
             @RequestBody ScheduleInsertDTO scheduleDTO
             ){
-        int size = service.insertNewSchedules(scheduleDTO).size();
         return new ResponseEntity<>(
                 new RestResponse<>(service.insertNewSchedules(scheduleDTO),
-                        "Schedule berhasil ditambahkan" + size,
+                        "Schedule berhasil ditambahkan",
                         "201"),
                 HttpStatus.CREATED
         );

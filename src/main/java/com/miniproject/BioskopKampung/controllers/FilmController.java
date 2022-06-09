@@ -34,7 +34,7 @@ public class FilmController {
         );
     }
 
-    @PostMapping
+    @PostMapping("insert-new-film")
     public ResponseEntity<RestResponse<FilmInsertResponseDTO>> insertNewFilm(
             @RequestBody FilmInsertDTO filmDTO
             ){

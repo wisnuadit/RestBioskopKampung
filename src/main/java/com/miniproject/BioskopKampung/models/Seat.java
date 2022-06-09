@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -36,9 +37,18 @@ public class Seat {
     @Column(name = "IsEnabled")
     private boolean isEnabled;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "seat")
+    private List<BookingTicket> bookingTickets;
+
     public Seat(Studio studio, Integer seatNumber, String row) {
         this.studio = studio;
         this.seatNumber = seatNumber;
         this.row = row;
+        this.isEnabled = true;
+    }
+
+    public String seatRowNumber(){
+        return String.format("%s%d", this.row, this.seatNumber);
     }
 }
