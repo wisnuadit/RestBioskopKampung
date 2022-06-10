@@ -3,6 +3,13 @@ Spring Version 2.6.8
 
 Application Bioskop Kampung, merupakan mini project menggunakan Spring Boot Version 2.6.8
 
+Dependecies:
+- Lombok
+- Spring Web
+- Spring Data JPA
+- MS SQL Server Driver
+- Spring Security
+
 Role Admin:
 - /bioskop-kampung/user/** 
 - /bioskop-kampung/booking-ticket 
