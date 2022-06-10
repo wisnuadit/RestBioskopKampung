@@ -1,0 +1,747 @@
+{
+	"info": {
+		"_postman_id": "457b30d0-b118-482b-bfb4-f5f4f048025a",
+		"name": "BioskopKampung",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20495734"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "layjeager",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"layjeager\",\r\n    \"password\" : \"indocyber\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/user/sign-user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"user",
+								"sign-user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Find Category",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "wisnu",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/category?categoryName=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"category"
+							],
+							"query": [
+								{
+									"key": "categoryName",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert New Category",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "aditya",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\" : \"Animasi\",\r\n    \"description\" : \"Film animasi merupakan jenis film yang pembuatannya menggunakan teknik animasi. Film animasi bisa menggunakan teknik kartun 2 dimensi, teknik CGI atau animasi komputer, teknik stop motion, teknik anime atau animasi Jepang, dan sebagainya.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/category/insert-new-category",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"category",
+								"insert-new-category"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Film",
+			"item": [
+				{
+					"name": "Find Film",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "aditya",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/film?filmName=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"film"
+							],
+							"query": [
+								{
+									"key": "filmName",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert New Film",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\" : 2,\r\n    \"filmName\" : \"The Last: Naruto the Movie\",\r\n    \"releaseDate\" : \"06-12-2014\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/film",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"film"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Studio",
+			"item": [
+				{
+					"name": "Find All Studio",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "wisnu",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/studio?enabled=&studioNumber=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"studio"
+							],
+							"query": [
+								{
+									"key": "enabled",
+									"value": ""
+								},
+								{
+									"key": "studioNumber",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert New Studio",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "wisnu",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studioNumber\" : 4,\r\n    \"description\" : \"Studio keempat\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/studio/insert-new-studio",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"studio",
+								"insert-new-studio"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Seat",
+			"item": [
+				{
+					"name": "Find All Seats",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "aditya",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/seats?studioNumber=&seatRow=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"seats"
+							],
+							"query": [
+								{
+									"key": "studioNumber",
+									"value": ""
+								},
+								{
+									"key": "seatRow",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert New Seats",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "wisnu",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studioId\" : 2,\r\n    \"seatNumbers\" : [1,2,3,4,5,6,7,8,9,10],\r\n    \"row\" : \"C\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/seats/insert-new-seats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"seats",
+								"insert-new-seats"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Schedule",
+			"item": [
+				{
+					"name": "Find All Schedules",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "aditya",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/schedule?name=&time=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"schedule"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": ""
+								},
+								{
+									"key": "time",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert New Schedules",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "aditya",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studioId\" : 1,\r\n    \"filmId\" : 1,\r\n    \"time\" : \"20:00\",\r\n    \"date\" : \"09-06-2022\",\r\n    \"description\" : \"Schedule ketiga\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/schedule",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Schedule By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/schedule?id=7",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"schedule"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Find Customers",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "layjeager",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/customer?name=wisnu",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "wisnu"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert New Customer",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "layjeager",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"Lay\",\r\n    \"lastName\" : \"Jeager\",\r\n    \"gender\" : \"Male\",\r\n    \"birthDate\" : \"01-01-2000\",\r\n    \"address\" : \"Tangerang\",\r\n    \"phoneNumber\" : \"0859xxxxxxxx\",\r\n    \"email\" : \"layjeager@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/customer/insert-new-customer",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"customer",
+								"insert-new-customer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking Ticket",
+			"item": [
+				{
+					"name": "Find All Tickets",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "wisnu",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/booking-ticket?customerName=&filmName=&studioNumber=&bookingDate=&time=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"booking-ticket"
+							],
+							"query": [
+								{
+									"key": "customerName",
+									"value": ""
+								},
+								{
+									"key": "filmName",
+									"value": ""
+								},
+								{
+									"key": "studioNumber",
+									"value": ""
+								},
+								{
+									"key": "bookingDate",
+									"value": ""
+								},
+								{
+									"key": "time",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert New Ticket",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "layjeager",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "indocyber",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"scheduleId\" : 2,\r\n    \"seatId\" : 12\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bioskop-kampung/booking-ticket/booking",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bioskop-kampung",
+								"booking-ticket",
+								"booking"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
