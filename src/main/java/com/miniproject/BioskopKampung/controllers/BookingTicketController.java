@@ -49,7 +49,7 @@ public class BookingTicketController {
             ){
         return new ResponseEntity<>(
                 new RestResponse<>(service.insertNewBooking(bookingTicketDTO, authentication),
-                        "Booking berhasil ditambahkan: ",
+                        "Booking berhasil ditambahkan",
                         "201"),
                 HttpStatus.CREATED
         );
