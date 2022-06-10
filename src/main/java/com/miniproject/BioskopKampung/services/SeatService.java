@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface SeatService {
 
-    public List<SeatHeaderDTO> findAllSeats();
+    public List<SeatHeaderDTO> findAllSeats(String studio, String seatRow);
     public SeatInsertResponseDTO insertNewSeats(SeatInsertDTO seatDTO);
 }

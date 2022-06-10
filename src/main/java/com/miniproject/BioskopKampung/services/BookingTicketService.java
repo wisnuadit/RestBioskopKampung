@@ -9,7 +9,9 @@ import java.util.List;
 
 public interface BookingTicketService {
 
-    public List<BookingTicketHeaderDTO> findAllBookingTickets(String seat);
+    public List<BookingTicketHeaderDTO> findAllBookingTickets(String customerName, String filmName,
+                                                              String studioNumber, String bookingDate,
+                                                              String time);
     public BookingTicketInsertResponseDTO insertNewBooking(BookingTicketInsertDTO bookingTicketDTO,
                                                                  Authentication authentication);
 }

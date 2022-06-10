@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class ScheduleServiceImplementation implements ScheduleService {
@@ -34,8 +36,26 @@ public class ScheduleServiceImplementation implements ScheduleService {
         this.filmRepository = filmRepository;
     }
 
-    public List<ScheduleHeaderDTO> findAllSchedules(){
-        return ScheduleHeaderDTO.toList(scheduleRepository.findAll());
+    public List<ScheduleHeaderDTO> findAllSchedules(String name, String time){
+        List<Schedule> schedules = new ArrayList<>();
+
+        Stream<Schedule> result = scheduleRepository.findAllByName(name, time).stream();
+        result.forEach((schedule -> {
+            schedules.add(
+                    new Schedule(
+                            schedule.getScheduleId(),
+                            schedule.getStudio(),
+                            schedule.getFilm(),
+                            schedule.getTime(),
+                            schedule.getDate(),
+                            schedule.getDescription(),
+                            schedule.isScheduled(),
+                            schedule.getBookingTickets()
+                    )
+            );
+        }));
+
+        return ScheduleHeaderDTO.toList(schedules);
     }
 
     public ScheduleInsertResponseDTO insertNewSchedules(ScheduleInsertDTO scheduleDTO){

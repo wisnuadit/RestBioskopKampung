@@ -40,11 +40,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/studio", "/studio/insert-new-studio").hasRole("Admin")
                 // ================================================================================
                 .antMatchers("/booking-ticket/booking").hasRole("User")
-                .antMatchers("/category").hasRole("User")
+                .antMatchers("/category").hasAnyRole("User", "Admin")
                 .antMatchers("/customer/insert-new-customer").hasRole("User")
-                .antMatchers("/film").hasRole("User")
-                .antMatchers("/schedule").hasRole("User")
-                .antMatchers("/seats").hasRole("User")
+                .antMatchers("/film").hasAnyRole("User", "Admin")
+                .antMatchers("/schedule").hasAnyRole("User", "Admin")
+                .antMatchers("/seats").hasAnyRole("User", "Admin")
                 .and().httpBasic()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface StudioService {
 
-    public List<StudioHeaderDTO> findAllStudios();
+    public List<StudioHeaderDTO> findAllStudios(String studioNumber, String enabled);
     public StudioInsertResponseDTO insertNewStudios(StudioInsertDTO studioDTO);
 }

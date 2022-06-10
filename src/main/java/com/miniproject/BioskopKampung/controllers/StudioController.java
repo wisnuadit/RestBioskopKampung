@@ -24,10 +24,13 @@ public class StudioController {
     }
 
     @GetMapping
-    public ResponseEntity<RestResponse<List<StudioHeaderDTO>>> findAllStudio(){
-        int size = service.findAllStudios().size();
+    public ResponseEntity<RestResponse<List<StudioHeaderDTO>>> findAllStudio(
+            @RequestParam(defaultValue = "") String studioNumber,
+            @RequestParam(defaultValue = "") String enabled
+    ){
+        int size = service.findAllStudios(studioNumber, enabled).size();
         return new ResponseEntity<>(
-                new RestResponse<>(service.findAllStudios(),
+                new RestResponse<>(service.findAllStudios(studioNumber, enabled),
                         "Studio berhasil ditemukan: " + size,
                         "200"),
                 HttpStatus.OK

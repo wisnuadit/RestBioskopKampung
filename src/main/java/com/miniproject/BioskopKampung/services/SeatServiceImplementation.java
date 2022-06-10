@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class SeatServiceImplementation implements SeatService{
@@ -25,8 +26,24 @@ public class SeatServiceImplementation implements SeatService{
         this.studioRepository = studioRepository;
     }
 
-    public List<SeatHeaderDTO> findAllSeats(){
-        return SeatHeaderDTO.toList(seatRepository.findAll());
+    public List<SeatHeaderDTO> findAllSeats(String studio, String seatRow){
+        List<Seat> seats = new ArrayList<>();
+
+        Stream<Seat> result = seatRepository.findAllSeatBySeatRowNumber(studio, seatRow).stream();
+        result.forEach((seat -> {
+            seats.add(
+                    new Seat(
+                            seat.getSeatId(),
+                            seat.getStudio(),
+                            seat.getSeatNumber(),
+                            seat.getRow(),
+                            seat.isBooked(),
+                            seat.isEnabled(),
+                            seat.getBookingTickets()
+                    )
+            );
+        }));
+        return SeatHeaderDTO.toList(seats);
     }
 
     public SeatInsertResponseDTO insertNewSeats(SeatInsertDTO seatDTO){
@@ -43,9 +60,10 @@ public class SeatServiceImplementation implements SeatService{
             seats.add(seat);
 
             for (Seat oldSeat : oldSeats){
-                if (seatNumber == oldSeat.getSeatId() && seat.getRow().equals(oldSeat.getRow())){
+                if (seatNumber == oldSeat.getSeatId() && seat.getRow().equals(oldSeat.getRow())
+                        && seat.getSeatId() == oldSeat.getSeatId()){
                     throw new IllegalArgumentException(String.format("Seat %s%d sudah ada",
-                            seat.getRow(), seat.getSeatId()));
+                            seat.getRow(), seat.getSeatNumber()));
                 }
             }
         }

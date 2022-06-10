@@ -26,11 +26,17 @@ public class BookingTicketController {
 
     @GetMapping
     public ResponseEntity<RestResponse<List<BookingTicketHeaderDTO>>> findAllBookingTickets(
-            @RequestParam(defaultValue = "") String seat
+            @RequestParam(defaultValue = "") String customerName,
+            @RequestParam(defaultValue = "") String filmName,
+            @RequestParam(defaultValue = "") String studioNumber,
+            @RequestParam(defaultValue = "") String bookingDate,
+            @RequestParam(defaultValue = "") String time
     ){
-        int size = service.findAllBookingTickets(seat).size();
+        int size = service.findAllBookingTickets(customerName, filmName,
+                studioNumber, bookingDate, time).size();
         return new ResponseEntity<>(
-                new RestResponse<>(service.findAllBookingTickets(seat),
+                new RestResponse<>(service.findAllBookingTickets(customerName, filmName,
+                        studioNumber, bookingDate, time),
                         "Ticket berhasil ditemukan: " + size,
                         "200"),
                 HttpStatus.OK

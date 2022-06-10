@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class CustomerServiceImplementation implements CustomerService{
@@ -28,8 +30,25 @@ public class CustomerServiceImplementation implements CustomerService{
         this.userRepository = userRepository;
     }
 
-    public List<CustomerHeaderDTO> findAllCustomers(){
-        return CustomerHeaderDTO.toList(customerRepository.findAll());
+    public List<CustomerHeaderDTO> findAllCustomers(String name){
+        List<Customer> customers = new ArrayList<>();
+
+        Stream<Customer> result = customerRepository.findAllByName(name).stream();
+        result.forEach((customer -> {
+            customers.add(
+                    new Customer(
+                            customer.getCustomerId(),
+                            customer.getFirstName(),
+                            customer.getLastName(),
+                            customer.getGender(),
+                            customer.getBirthDate(),
+                            customer.getAddress(),
+                            customer.getPhoneNumber(),
+                            customer.getEmail()
+                    )
+            );
+        }));
+        return CustomerHeaderDTO.toList(customers);
     }
 
     public CustomerInsertResponseDTO insertNewCustomer(Authentication authentication, CustomerInsertDTO customerDTO){

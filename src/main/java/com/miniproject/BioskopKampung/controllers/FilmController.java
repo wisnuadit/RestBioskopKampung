@@ -24,10 +24,12 @@ public class FilmController {
     }
 
     @GetMapping
-    public ResponseEntity<RestResponse<List<FilmHeaderDTO>>> findAll(){
-        int size = service.findAllFilms().size();
+    public ResponseEntity<RestResponse<List<FilmHeaderDTO>>> findAll(
+            @RequestParam(defaultValue = "") String filmName
+    ){
+        int size = service.findAllFilms(filmName).size();
         return new ResponseEntity<>(
-                new RestResponse<>(service.findAllFilms(),
+                new RestResponse<>(service.findAllFilms(filmName),
                         "Film berhasil ditemukan: " + size,
                         "200"),
                 HttpStatus.OK

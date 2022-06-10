@@ -24,10 +24,13 @@ public class SeatController {
     }
 
     @GetMapping
-    public ResponseEntity<RestResponse<List<SeatHeaderDTO>>> findAllSeats(){
-        int size = service.findAllSeats().size();
+    public ResponseEntity<RestResponse<List<SeatHeaderDTO>>> findAllSeats(
+            @RequestParam(defaultValue = "") String studioNumber,
+            @RequestParam(defaultValue = "") String seatRow
+    ){
+        int size = service.findAllSeats(studioNumber, seatRow).size();
         return new ResponseEntity<>(
-                new RestResponse<>(service.findAllSeats(),
+                new RestResponse<>(service.findAllSeats(studioNumber, seatRow),
                         "Seat berhasil ditemukan: " + size,
                         "200"),
                 HttpStatus.OK

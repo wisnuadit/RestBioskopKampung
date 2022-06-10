@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CategoryService {
 
-    public List<CategoryHeaderDTO> findAllCategories();
+    public List<CategoryHeaderDTO> findAllCategories(String caterogyName);
     public CategoryInsertResponseDTO insertNewCategory(CategoryInsertDTO categoryDTO);
 }

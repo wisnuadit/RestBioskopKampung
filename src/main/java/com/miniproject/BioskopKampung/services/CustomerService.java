@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CustomerService {
 
-    public List<CustomerHeaderDTO> findAllCustomers();
+    public List<CustomerHeaderDTO> findAllCustomers(String name);
     public CustomerInsertResponseDTO insertNewCustomer(Authentication authentication,
                                                        CustomerInsertDTO customerDTO);
 }

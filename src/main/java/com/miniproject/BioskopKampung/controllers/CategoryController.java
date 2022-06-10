@@ -24,10 +24,12 @@ public class CategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<RestResponse<List<CategoryHeaderDTO>>> findAll(){
-        int size = service.findAllCategories().size();
+    public ResponseEntity<RestResponse<List<CategoryHeaderDTO>>> findAll(
+            @RequestParam(defaultValue = "") String categoryName
+    ){
+        int size = service.findAllCategories(categoryName).size();
         return new ResponseEntity<>(
-                new RestResponse<>(service.findAllCategories(),
+                new RestResponse<>(service.findAllCategories(categoryName),
                         "Category berhasil ditemukan: " + size,
                         "200"),
                 HttpStatus.OK

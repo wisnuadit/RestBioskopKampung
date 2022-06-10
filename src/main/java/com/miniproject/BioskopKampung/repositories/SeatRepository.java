@@ -12,7 +12,10 @@ public interface SeatRepository extends JpaRepository<Seat, Integer> {
     @Query(value = """
             SELECT * 
             FROM Seats s
-            WHERE CONCAT(s.Row, s.SeatNumber) = :seatRowNumber
+                JOIN Studios stu ON stu.StudioID = s.StudioID
+            WHERE stu.StudioNumber LIKE %:studio%
+                AND s.Row LIKE %:seat%
             """, nativeQuery = true)
-    Seat findSeatBySeatRowNumber(@Param("seatRowNumber") String seatRowNumber);
+    List<Seat> findAllSeatBySeatRowNumber(@Param("studio") String studio,
+                                          @Param("seat") String seat);
 }

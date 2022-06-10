@@ -25,10 +25,13 @@ public class ScheduleController {
     }
 
     @GetMapping
-    public ResponseEntity<RestResponse<List<ScheduleHeaderDTO>>> findAllSchedules(){
-        int size = service.findAllSchedules().size();
+    public ResponseEntity<RestResponse<List<ScheduleHeaderDTO>>> findAllSchedules(
+            @RequestParam(defaultValue = "") String filmName,
+            @RequestParam(defaultValue = "") String time
+    ){
+        int size = service.findAllSchedules(filmName, time).size();
         return new ResponseEntity<>(
-                new RestResponse<>(service.findAllSchedules(),
+                new RestResponse<>(service.findAllSchedules(filmName, time),
                         "Schedule berhasil ditemukan: " + size,
                         "200"),
                 HttpStatus.OK

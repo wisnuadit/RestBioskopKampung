@@ -26,10 +26,12 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity<RestResponse<List<CustomerHeaderDTO>>> findAllCustomers(){
-        int size = service.findAllCustomers().size();
+    public ResponseEntity<RestResponse<List<CustomerHeaderDTO>>> findAllCustomers(
+            @RequestParam(defaultValue = "") String name
+    ){
+        int size = service.findAllCustomers(name).size();
         return new ResponseEntity<>(
-                new RestResponse<>(service.findAllCustomers(),
+                new RestResponse<>(service.findAllCustomers(name),
                         "Customer berhasil ditemukan: " + size,
                         "200"),
                 HttpStatus.OK

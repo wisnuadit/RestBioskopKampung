@@ -10,8 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -35,8 +35,29 @@ public class BookingTicketServiceImplementation implements BookingTicketService{
         this.userRepository = userRepository;
     }
 
-    public List<BookingTicketHeaderDTO> findAllBookingTickets(String seat){
-        List<BookingTicket> bookingTickets = bookingTicketRepository.findAllByKey(seat);
+    public List<BookingTicketHeaderDTO> findAllBookingTickets(String customerName, String filmName,
+                                                              String studioNumber, String bookingDate,
+                                                              String time){
+        List<BookingTicket> bookingTickets = new ArrayList<>();
+
+        Stream<BookingTicket> result = bookingTicketRepository.findAllByKey(customerName, filmName,
+                studioNumber, bookingDate, time).stream();
+        result.forEach(
+                (bookingTicket -> {
+                    bookingTickets.add(
+                            new BookingTicket(
+                                    bookingTicket.getTicketId(),
+                                    bookingTicket.getCustomer(),
+                                    bookingTicket.getSchedule(),
+                                    bookingTicket.getFilmName(),
+                                    bookingTicket.getStudioNumber(),
+                                    bookingTicket.getSeat(),
+                                    bookingTicket.getBookingDate(),
+                                    bookingTicket.getTime()
+                            )
+                    );
+                })
+        );
         return BookingTicketHeaderDTO.toList(bookingTickets);
     }
 

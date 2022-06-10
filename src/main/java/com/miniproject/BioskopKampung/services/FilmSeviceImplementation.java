@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class FilmSeviceImplementation implements FilmService{
@@ -27,8 +29,23 @@ public class FilmSeviceImplementation implements FilmService{
         this.categoryRepository = categoryRepository;
     }
 
-    public List<FilmHeaderDTO> findAllFilms(){
-        return FilmHeaderDTO.toList(filmRepository.findAll());
+    public List<FilmHeaderDTO> findAllFilms(String name){
+        List<Film> films = new ArrayList<>();
+
+        Stream<Film> result = filmRepository.findAllByName(name).stream();
+        result.forEach((film -> {
+            films.add(
+                    new Film(
+                            film.getFilmId(),
+                            film.getCategory(),
+                            film.getFilmName(),
+                            film.getReleaseDate(),
+                            film.getEndDate(),
+                            film.getSchedules()
+                    )
+            );
+        }));
+        return FilmHeaderDTO.toList(films);
     }
 
     public FilmInsertResponseDTO insertNewFilm(FilmInsertDTO filmDTO){
